@@ -27,12 +27,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-
-      - name: Print secret
-        run: |
-          echo ${{ secrets.GITHUB_TOKEN  }}
-          echo ${{ 'Hola Mundo' }}
-
       - name: Build project
         run: npm run gh-build
 
