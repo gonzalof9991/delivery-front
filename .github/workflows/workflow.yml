@@ -35,4 +35,4 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
           publish_dir: ./dist/frontend
 
-// Como imprimir el secreto en la consola
+
