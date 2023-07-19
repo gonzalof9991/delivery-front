@@ -1,0 +1,112 @@
+<main >
+  <div class="flex flex-col justify-center items-center">
+    <img src="assets/img/chiqui.png" alt="Logo Chiqui" class="w-32">
+  </div>
+  <!-- Search + Create -->
+  <div class="mb-4 flex justify-center items-center">
+    <div class=" w-full sm:w-full md:w-1/4 lg:h-full  lg:w-1/4  ">
+      <button (click)="createDialog()" mat-flat-button class="w-full py-4" color="primary">Nuevo cliente</button>
+    </div>
+  </div>
+  <!-- Table -->
+  <div class=" overflow-auto min-w-screen">
+    <div class="w-full">
+      <table mat-table [dataSource]="table.dataSource" class="shadow-lg  " >
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="completed" >
+          <th mat-header-cell *matHeaderCellDef> Realizado </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" (change)="listenCheck($event,element)" [(ngModel)]="element.completed">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="delivered">
+          <th mat-header-cell *matHeaderCellDef> Entregado </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" (change)="listenCheck($event,element)"  [(ngModel)]="element.delivered">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> N° Cliente </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre Cliente </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Categoria </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="subcategory">
+          <th mat-header-cell *matHeaderCellDef> Subcategoria </th>
+          <td mat-cell *matCellDef="let element"> {{element.subcategory}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let element"> {{element.price | number}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef> Fecha Entrega </th>
+          <td mat-cell *matCellDef="let element"> {{element.deliveredAt}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Tipo entrega </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="text-violet-800 border border-violet-900  text-sm font-medium px-2 py-1 rounded">{{element.type}} </span>
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef> Opciones </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button  color="primary" (click)="remove(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button  color="primary" (click)="view(element)">
+              <mat-icon>chat-bubble-left-ellipsis
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="table.columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: table.columns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            <div class="p-3">
+              <span class="font-semibold">
+                No se encontraron resultados
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+</main>
+

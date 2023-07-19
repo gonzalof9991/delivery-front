@@ -1,0 +1,90 @@
+<h1 mat-dialog-title class="text-indigo-800 font-semibold">Crear Cliente</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form.formGroup">
+    <div class="grid grid-cols-1 gap-2 xl:grid-cols-3">
+      <mat-form-field appearance="fill" >
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" placeholder="Ej: pedro"  required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="price" placeholder="Ej: 8000" type="number"  required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Tipo Entrega</mat-label>
+        <mat-select formControlName="type" required>
+          <mat-option value="Presencial">Presencial</mat-option>
+          <mat-option value="Starken">Starken</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <mat-divider class="my-4"></mat-divider>
+    <div class="grid grid-cols-1 gap-2 xl:grid-cols-3">
+      <mat-form-field appearance="fill" >
+        <mat-label>Entregado</mat-label>
+        <mat-select formControlName="delivered" required>
+          <mat-option value="true">Si</mat-option>
+          <mat-option value="false">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Realizado</mat-label>
+        <mat-select formControlName="completed" required>
+          <mat-option value="true">Si</mat-option>
+          <mat-option value="false">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha entrega</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="deliveredAt" [min]="minDate" >
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <mat-divider class="my-4"></mat-divider>
+    <div class="grid grid-cols-1 gap-2 xl:grid-cols-2">
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let item of form.category.list" [value]="item.name">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>Subcategoría</mat-label>
+        <input matInput formControlName="subcategory" placeholder="Ej: Set 3"  required>
+      </mat-form-field>
+
+
+    </div>
+
+    <mat-divider class="my-4"></mat-divider>
+    <div class="grid grid-cols-1 gap-2">
+      <mat-form-field appearance="fill" >
+        <mat-label>Notas</mat-label>
+        <textarea matInput formControlName="observation" placeholder="Ej. La clienta me pidio..."></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions >
+  <div class="flex flex-col w-full gap-2 justify-center items-center xl:flex-row xl:justify-end" *ngIf="data.type === 'create'">
+    <button mat-button (click)="close('cancel')" class="w-full py-6 lg:w-1/5">Cerrar</button>
+    <button mat-button (click)="close('save')"  cdkFocusInitial color="primary" class="w-full py-6 lg:w-1/5">Crear</button>
+  </div>
+
+  <div class="flex w-full justify-end items-center" *ngIf="data.type === 'view'">
+    <button mat-button (click)="close('cancel')" class="w-full py-6 lg:w-1/5">Cerrar</button>
+  </div>
+
+</div>
