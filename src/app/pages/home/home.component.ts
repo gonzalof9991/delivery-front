@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
-    const clients = this._sharedService.sesionStorage.get('clients');
+    const clients = this._sharedService.localStorage.get('clients');
     if (clients) {
       this.dataSource = clients;
     }
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit{
   }
 
   public listenCheck(event: any, element: IClient) {
-    this._sharedService.sesionStorage.set('clients', this.dataSource);
+    this._sharedService.localStorage.set('clients', this.dataSource);
   }
 
   public async createDialog(): Promise<void> {
@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit{
       this.homeDialog.data.id = this.dataSource.length + 1;
       this.dataSource.push(this.homeDialog.data);
       this.table.dataSource.data = this.dataSource;
-      this._sharedService.sesionStorage.set('clients', this.dataSource);
+      this._sharedService.localStorage.set('clients', this.dataSource);
     }
   }
 
@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit{
     if (index !== -1) {
       this.dataSource.splice(index, 1);
       this.table.dataSource.data = this.dataSource;
-      this._sharedService.sesionStorage.set('clients', this.dataSource);
+      this._sharedService.localStorage.set('clients', this.dataSource);
     }
   }
 

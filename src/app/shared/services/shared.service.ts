@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {ICategory} from "../../pages/home/home.interface";
-import {SesionStorage} from "../class/sesion-storage";
+import {LocalStorage} from "../class/local-storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
   public categories: ICategory[];
-  public sesionStorage: SesionStorage;
+  public localStorage: LocalStorage;
   constructor() {
     this.categories = [
       {
@@ -32,6 +32,6 @@ export class SharedService {
       }
     ]
     // set sesion storage
-    this.sesionStorage = new SesionStorage();
+    this.localStorage = new LocalStorage();
   }
 }
