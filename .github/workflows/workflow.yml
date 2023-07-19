@@ -24,7 +24,8 @@ jobs:
       - name: Print secret
         run: |
           echo ${{ secrets.TOKEN }}
-          echo $TOKEN
+          echo ${{ secrets }}
+          echo ${{ 'Hola Mundo' }}
 
       - name: Build project
         run: npm run gh-build
