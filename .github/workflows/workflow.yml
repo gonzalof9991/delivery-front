@@ -25,6 +25,8 @@ jobs:
         run: |
           echo ${{ secrets.TOKEN }}
           echo ${{ secrets }}
+          echo ${{ secrets.github_pages }}
+          echo ${{ secrets.github_pages.TOKEN }}
           echo ${{ 'Hola Mundo' }}
 
       - name: Build project
@@ -33,7 +35,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.github_pages }}
           publish_dir: ./dist/frontend
 
 
