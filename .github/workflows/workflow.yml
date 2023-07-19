@@ -20,6 +20,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+
+      - name: Print secret
+        run: |
+          echo ${{ secrets.TOKEN }}
+          echo $TOKEN
+
       - name: Build project
         run: npm run gh-build
 
@@ -28,3 +34,5 @@ jobs:
         with:
           github_token: ${{ secrets.TOKEN }}
           publish_dir: ./dist/frontend
+
+// Como imprimir el secreto en la consola
