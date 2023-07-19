@@ -8,9 +8,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -23,10 +30,7 @@ jobs:
 
       - name: Print secret
         run: |
-          echo ${{ secrets.TOKEN }}
-          echo ${{ secrets }}
           echo ${{ secrets.GITHUB_TOKEN  }}
-          echo ${{ secrets.github_pages.TOKEN }}
           echo ${{ 'Hola Mundo' }}
 
       - name: Build project
